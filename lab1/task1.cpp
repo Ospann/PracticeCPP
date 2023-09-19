@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 int main()
@@ -42,7 +41,6 @@ int main()
 
     cout << endl;
 
-    // Don't forget to deallocate memory for the arrays
     delete[] A;
     delete[] B;
 
