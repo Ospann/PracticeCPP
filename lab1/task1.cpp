@@ -1,8 +1,6 @@
 #include <iostream>
-#include <set>
-#include <vector>
 
-using namespace std; 
+using namespace std;
 
 int main()
 {
@@ -14,8 +12,8 @@ int main()
     cout << "Enter size for array (N): ";
     cin >> N;
 
-    vector<int> A(M);
-    vector<int> B(N);
+    int* A = new int[M];
+    int* B = new int[N];
 
     cout << "Enter elements for array A:\n";
     for (int i = 0; i < M; ++i)
@@ -29,24 +27,24 @@ int main()
         cin >> B[i];
     }
 
-    set<int> commonElements;
-
+    cout << "Common elements in arrays:\n";
     for (int i = 0; i < M; ++i)
     {
-        commonElements.insert(A[i]);
-    }
-
-    cout << "Generals elements in arrays:\n";
-    for (int i = 0; i < N; ++i)
-    {
-        if (commonElements.count(B[i]))
+        for (int j = 0; j < N; ++j)
         {
-            cout << B[i] << " ";
-            commonElements.erase(B[i]); 
+            if (A[i] == B[j])
+            {
+                cout << A[i] << " ";
+                break;
+            }
         }
     }
 
     cout << endl;
+
+    // Don't forget to deallocate memory for the arrays
+    delete[] A;
+    delete[] B;
 
     return 0;
 }

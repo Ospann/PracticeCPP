@@ -1,28 +1,43 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main()
 {
-    vector<int> dynamicArray;
+    int arraySize = 3;
+    int* dynamicArray = new int[arraySize];
     int newElement;
-    dynamicArray.push_back(1);
-    dynamicArray.push_back(2);
-    dynamicArray.push_back(3);
+
+    dynamicArray[0] = 1;
+    dynamicArray[1] = 2;
+    dynamicArray[2] = 3;
 
     cout << "Enter new element in array: ";
     cin >> newElement;
-    dynamicArray.push_back(newElement);
+
+    int* newArray = new int[arraySize + 1];
+
+    for (int i = 0; i < arraySize; i++)
+    {
+        newArray[i] = dynamicArray[i];
+    }
+
+    newArray[arraySize] = newElement;
+
+    delete[] dynamicArray;
+    dynamicArray = newArray;
+    arraySize++;
 
     cout << "Your array: ";
 
-    for (int i = 0; i < dynamicArray.size(); i++)
+    for (int i = 0; i < arraySize; i++)
     {
         cout << dynamicArray[i] << " ";
     }
 
     cout << endl;
+
+    delete[] dynamicArray;
 
     return 0;
 }

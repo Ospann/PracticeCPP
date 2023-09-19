@@ -1,8 +1,6 @@
 #include <iostream>
-#include <set>
-#include <vector>
 
-using namespace std; 
+using namespace std;
 
 int main()
 {
@@ -14,8 +12,8 @@ int main()
     cout << "Enter size for array (N): ";
     cin >> N;
 
-    vector<int> A(M);
-    vector<int> B(N);
+    int *A = new int[M];
+    int *B = new int[N];
 
     cout << "Enter elements for array A:\n";
     for (int i = 0; i < M; ++i)
@@ -29,26 +27,69 @@ int main()
         cin >> B[i];
     }
 
-    set<int> uniqueElements;
-    
-    vector<int> result;
-    
-    for (int i = 0; i < M; ++i) {
-        uniqueElements.insert(A[i]);
-    }
-    
-    for (int i = 0; i < N; ++i) {
-        if (uniqueElements.find(B[i]) == uniqueElements.end()) {
-            result.push_back(B[i]);
+    int *uniqueElementsA = new int[M];
+    int *uniqueElementsB = new int[N];
+    int uniqueCountA = 0;
+    int uniqueCountB = 0;
+
+    for (int i = 0; i < M; ++i)
+    {
+        bool isUnique = true;
+
+        for (int j = 0; j < uniqueCountA; ++j)
+        {
+            if (A[i] == uniqueElementsA[j])
+            {
+                isUnique = false;
+                break;
+            }
+        }
+
+        if (isUnique)
+        {
+            uniqueElementsA[uniqueCountA] = A[i];
+            uniqueCountA++;
         }
     }
-    
-    cout << "Unique elements in arrays:\n";
-    for (int i = 0; i < result.size(); ++i) {
-        cout << result[i] << " ";
+
+    for (int i = 0; i < N; ++i)
+    {
+        bool isUnique = true;
+
+        for (int j = 0; j < uniqueCountB; ++j)
+        {
+            if (B[i] == uniqueElementsB[j])
+            {
+                isUnique = false;
+                break;
+            }
+        }
+
+        if (isUnique)
+        {
+            uniqueElementsB[uniqueCountB] = B[i];
+            uniqueCountB++;
+        }
     }
-    
+
+    cout << "Unique elements in arrays A:\n";
+    for (int i = 0; i < uniqueCountA; ++i)
+    {
+        cout << uniqueElementsA[i] << " ";
+    }
+
+    cout << "\nUnique elements in arrays B:\n";
+    for (int i = 0; i < uniqueCountB; ++i)
+    {
+        cout << uniqueElementsB[i] << " ";
+    }
+
     cout << endl;
+
+    delete[] A;
+    delete[] B;
+    delete[] uniqueElementsA;
+    delete[] uniqueElementsB;
 
     return 0;
 }

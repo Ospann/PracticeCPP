@@ -9,7 +9,7 @@ double calculation(double operand1, double operand2, char operation);
 int main()
 {
     string equation;
-    cout << "Enter (example: 10*5, 10+5, 10/3): ";
+    cout << "Enter (example: 10*5, 10+5, 10/5, 10-5): ";
     getline(cin, equation);
 
     istringstream iss(equation);

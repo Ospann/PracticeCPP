@@ -1,8 +1,6 @@
 #include <iostream>
-#include <set>
-#include <vector>
 
-using namespace std; 
+using namespace std;
 
 int main()
 {
@@ -14,8 +12,8 @@ int main()
     cout << "Enter size for array (N): ";
     cin >> N;
 
-    vector<int> A(M);
-    vector<int> B(N);
+    int* A = new int[M];
+    int* B = new int[N];
 
     cout << "Enter elements for array A:\n";
     for (int i = 0; i < M; ++i)
@@ -29,23 +27,40 @@ int main()
         cin >> B[i];
     }
 
-    set<int> uniqueB(B.begin(), B.end());
-    
-    vector<int> result;
-    
-    for (int i = 0; i < M; ++i) {
-        if (uniqueB.find(A[i]) == uniqueB.end()) {
-            result.push_back(A[i]);
-            uniqueB.insert(A[i]); 
+    int* uniqueElements = new int[M];
+    int uniqueCount = 0;
+
+    for (int i = 0; i < M; ++i)
+    {
+        bool isUnique = true;
+
+        for (int j = 0; j < N; ++j)
+        {
+            if (A[i] == B[j])
+            {
+                isUnique = false;
+                break;
+            }
+        }
+
+        if (isUnique)
+        {
+            uniqueElements[uniqueCount] = A[i];
+            uniqueCount++;
         }
     }
-    
-    cout << "Unique elements only in A :\n";
-    for (int i = 0; i < result.size(); ++i) {
-        cout << result[i] << " ";
+
+    cout << "Unique elements only in A:\n";
+    for (int i = 0; i < uniqueCount; ++i)
+    {
+        cout << uniqueElements[i] << " ";
     }
-    
+
     cout << endl;
+
+    delete[] A;
+    delete[] B;
+    delete[] uniqueElements;
 
     return 0;
 }
