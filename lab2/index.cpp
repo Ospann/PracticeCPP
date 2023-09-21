@@ -51,15 +51,23 @@ public:
      */
     void reverse()
     {
+        //создал лист для реверса
         ListNode<T> *prev = NULL;
+        //создал listnode и назначил head
         ListNode<T> *current = head;
         while (current)
         {
+            
             ListNode<T> *nextNode = current->next;
+            //приравниваю next к null а дальше к предудущему элементу
             current->next = prev;
+            // перезаписываю null на нынешний элемент
             prev = current;
+            // current присваевая nextNode
             current = nextNode;
         }
+
+        //в конце перезаписываю head на prev
         head = prev;
     }
 };
