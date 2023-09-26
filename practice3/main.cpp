@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+// variant 1
 
 // class Student
 // {
@@ -87,11 +88,12 @@ private:
 public:
     Group(string arr[], int size) : student(arr), arrSize(size) {}
 
+    // Пузырьковый метод
     void sortByBubble()
     {
-        for (int i = 0; i < arrSize - 1; i++)
+        for (int i = 0; i < arrSize; i++)
         {
-            for (int j = 0; j < arrSize - i - 1; j++)
+            for (int j = 0; j < arrSize - i; j++)
             {
                 if (student[j] > student[j + 1])
                 {
@@ -99,6 +101,28 @@ public:
                     student[j] = student[j + 1];
                     student[j + 1] = temp;
                 }
+            }
+        }
+    }
+
+    // Сортировка с выбором
+    void sortbyChoose()
+    {
+        int min = 0;
+        string buf = "";
+
+        for (int i = 0; i < arrSize; i++)
+        {
+            min = i;
+            for (int j = i + 1; j < arrSize; j++)
+            {
+                min = (student[j] < student[min]) ? j : min;
+            }
+            if (i != min)
+            {
+                buf = student[i];
+                student[i] = student[min];
+                student[min] = buf;
             }
         }
     }
@@ -120,17 +144,16 @@ int main()
                         "Ibrayev R.R.",
                         "Bekeshev B.D.",
                         "Rejepov A.R.",
-                        "Issayev I.I."};
-    int arrSize = sizeof(student) / sizeof(student[0]);
+                        "Issayev I.I.",
+                        "Satbayev K.D.",
+                        "Mukhamedov A.R",
+                        "Emenov I.G."};
 
-    Group group(student, arrSize);
+    Group group(student, 10);
 
-    group.sortByBubble();
+    // group.sortByBubble();
+    group.sortbyChoose();
     group.print();
-
-    // University myUniversity;
-    // myUniversity.sortByLastName();
-    // myUniversity.print();
 
     return 0;
 }
