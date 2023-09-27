@@ -25,34 +25,43 @@ public:
 
     void Add(T val)
     {
-        Node<T> *newList = new Node<T>(val);
+        Node<T> *newNode = new Node<T>(val);
 
-        /*
-         * проверочка не равен ли head null и если первое значение больше
-         * то делаем что некст это нынешний head и переназначаем head на наш
-         */
-        if (!head || val < head->val )
+        // Если список пустой, новый элемент становится головным элементом
+        if (!head)
         {
-            newList->next = head;
-            head = newList;
+            head = newNode;
             return;
         }
 
-        // создал новый узел который изначально равен head
-        Node<T> *el = head;
-
-        /*
-         * Если значение след элемента меньше чем val, то заменяем el на след элемент
-         * цикл будет идти пока мы не найдем элемент больше чем наше значение внутри листа
-         */
-        while (el->next && el->next->val < val)
+        // Если новый элемент меньше или равен головному элементу,
+        // он становится новым головным элементом
+        if (val <= head->val)
         {
-            el = el->next;
+            newNode->next = head;
+            head->prev = newNode;
+            head = newNode;
+            return;
         }
 
-        // Вставляем новый узел после el
-        newList->next = el->next;
-        el->next = newList;
+        Node<T> *current = head;
+
+        // Поиск правильной позиции для вставки нового элемента
+        while (current->next && val > current->next->val)
+        {
+            current = current->next;
+        }
+
+        // Вставка нового элемента после текущего элемента
+        newNode->prev = current;
+        newNode->next = current->next;
+
+        if (current->next)
+        {
+            current->next->prev = newNode;
+        }
+
+        current->next = newNode;
     }
 
     /**
