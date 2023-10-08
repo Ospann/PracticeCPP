@@ -1,23 +1,23 @@
-#include <iostream>
-using namespace std;
 
-class FixedCapacityStack
+
+template <typename T>
+class Stack
 {
 private:
-    int *a; // массив, содержащий элементы Стека
-    int n;  // количество элементов в Стеке
+    T *a;         // массив, содержащий элементы Стека
+    int n;        // количество элементов в Стеке
     int capacity; // максимальная вместимость стека
 public:
     // Конструктор: создать пустой динамический массив с размером, равным capacity
-    FixedCapacityStack(int capacity)
+    Stack(int capacity)
     {
         this->capacity = capacity;
-        a = new int[capacity];
+        a = new T[capacity];
         n = 0; // Начальное количество элементов в стеке равно 0
     };
 
     // Деструктор: освободить память массива (delete)
-    ~FixedCapacityStack()
+    ~Stack()
     {
         delete[] a;
     }
@@ -43,8 +43,33 @@ public:
         }
         else
         {
-            a[n++] = item; 
+            a[n++] = item;
         }
+    }
+
+    void resize(int new_capacity)
+    {
+        //проверочка
+        if (new_capacity <= 0)
+        {
+            cout << "Invalid capacity" << endl;
+            return;
+        }
+
+        T *new_a = new T[new_capacity];
+
+        // Копируем элементы из старого массива в новый
+        for (int i = 0; i < n; ++i)
+        {
+            new_a[i] = a[i];
+        }
+
+        // Освобождаем старый массив
+        delete[] a;
+
+        // Обновляем указатель на новый массив и вместимость
+        a = new_a;
+        capacity = new_capacity;
     }
 
     // Удалить вершину стека
@@ -53,9 +78,9 @@ public:
         if (empty())
         {
             cout << "Stack is empty" << endl;
-            return -1; 
+            return -1;
         }
-        return a[--n]; 
+        return a[--n];
     }
 
     // Вернуть значение вершины стека
@@ -70,7 +95,7 @@ public:
     }
 
     // Перегрузка оператора << для вывода элементов стека через cout
-    friend ostream &operator<<(ostream &os, FixedCapacityStack &st)
+    friend ostream &operator<<(ostream &os, Stack &st)
     {
         for (int i = 0; i < st.n; ++i)
         {
@@ -79,23 +104,3 @@ public:
         return os;
     }
 };
-
-int main()
-{
-    FixedCapacityStack mystack(5);
-    for (int i = 1; i <= 5; ++i)
-    {
-        mystack.push(i);
-    }
-    // Вывод элементов стека
-    cout << mystack << endl;
-
-    // Очищение стека – удаление всех элементов
-    while (!mystack.empty())
-    {
-        mystack.pop();
-    }
-    cout << "After delete:" << mystack.empty() << endl;
-
-    return 0;
-}

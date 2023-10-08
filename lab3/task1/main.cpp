@@ -1,16 +1,18 @@
 #include <iostream>
-#include "Stack"
+#include "Stack.h"
 using namespace std;
 
-int main(){
-    Stack mystack(5);
+int main()
+{
+    Stack<int> mystack(5);
     for (int i = 1; i <= 5; ++i)
     {
         mystack.push(i);
     }
-
+    // Вывод элементов стека
     cout << mystack << endl;
 
+    // Очищение стека – удаление всех элементов
     while (!mystack.empty())
     {
         mystack.pop();
