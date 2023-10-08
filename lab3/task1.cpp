@@ -82,14 +82,13 @@ public:
 
 int main()
 {
-    FixedCapacityStack mystack(5); // Create an instance of FixedCapacityStack
+    FixedCapacityStack mystack(5);
     for (int i = 1; i <= 5; ++i)
     {
         mystack.push(i);
     }
     // Вывод элементов стека
     cout << mystack << endl;
-    // mystack.push(6); // проверка на добавление элемента в полный стек
 
     // Очищение стека – удаление всех элементов
     while (!mystack.empty())
