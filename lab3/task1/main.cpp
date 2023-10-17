@@ -10,13 +10,19 @@ int main()
     }
     // Вывод элементов стека
     cout << mystack << endl;
-
-    // Очищение стека – удаление всех элементов
-    while (!mystack.empty())
+    try
     {
-        mystack.pop();
+        // Очищение стека – удаление всех элементов
+        while (!mystack.empty())
+        {
+            mystack.pop();
+        }
+        cout << "After delete:" << mystack.empty() << endl;
     }
-    cout << "After delete:" << mystack.empty() << endl;
+    catch (const runtime_error &e)
+    {
+        cerr << "Error: " << e.what() << endl;
+    }
 
     return 0;
 }

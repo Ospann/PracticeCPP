@@ -1,5 +1,6 @@
 #include "Stack.h"
 
+// Конструктор класса Stack
 template <typename T>
 Stack<T>::Stack(int capacity)
 {
@@ -8,30 +9,34 @@ Stack<T>::Stack(int capacity)
     n = 0;
 }
 
+// Деструктор класса Stack
 template <typename T>
 Stack<T>::~Stack()
 {
     delete[] a;
 }
 
+// Проверяет, пуст ли стек
 template <typename T>
 bool Stack<T>::empty()
 {
     return n == 0;
 }
 
+// Проверяет, заполнен ли стек
 template <typename T>
 bool Stack<T>::full()
 {
     return n == capacity;
 }
 
+// Добавляет элемент в стек
 template <typename T>
 void Stack<T>::push(T item)
 {
     if (full())
     {
-        cout << "Stack is full" << endl;
+        throw runtime_error("Array is full"); // Бросаем исключение, если стек заполнен
     }
     else
     {
@@ -39,13 +44,13 @@ void Stack<T>::push(T item)
     }
 }
 
+// Изменяет размер стека
 template <typename T>
 void Stack<T>::resize(int new_capacity)
 {
     if (new_capacity <= 0)
     {
-        cout << "Invalid capacity" << endl;
-        return;
+        throw runtime_error("New size too small");
     }
 
     T *new_a = new T[new_capacity];
@@ -61,28 +66,29 @@ void Stack<T>::resize(int new_capacity)
     capacity = new_capacity;
 }
 
+// Извлекает элемент из стека
 template <typename T>
 T Stack<T>::pop()
 {
     if (empty())
     {
-        cout << "Stack is empty" << endl;
-        return T();
+        throw runtime_error("Array is empty"); // Бросаем исключение, если стек пуст
     }
     return a[--n];
 }
 
+// Возвращает вершину стека без удаления
 template <typename T>
 T Stack<T>::top()
 {
     if (empty())
     {
-        cout << "Stack is empty" << endl;
-        return T();
+        throw runtime_error("Array is empty"); // Бросаем исключение, если стек пуст
     }
     return a[n - 1];
 }
 
+// Перегрузка оператора вывода для класса Stack
 template <typename T>
 ostream &operator<<(ostream &os, const Stack<T> &st)
 {
