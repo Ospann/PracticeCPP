@@ -8,7 +8,7 @@ using namespace std;
  * @param s - строка, в которой происходит вставка
  * @param index - текущий индекс символа в строке
  */
-void addStart(string &s, int index)
+void addStars(string &s, int index)
 {
     // Базовый случай: если индекс достиг конца строки, завершаем рекурсию.
     if (index == static_cast<int>(s.length()) - 1)
@@ -20,7 +20,7 @@ void addStart(string &s, int index)
     s.insert(index + 1, "*");
 
     // Рекурсивно вызываем функцию для следующего символа.
-    addStart(s, index + 2);
+    addStars(s, index + 2);
 }
 
 int main()
