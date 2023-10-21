@@ -29,9 +29,15 @@ int main()
     cout << "Введите ваш текст: ";
     cin >> input;
 
-    addStart(input, 0);
-
-    cout << input << endl;
+    if (!input.empty())
+    {
+        addStars(input, 0);
+        cout << input << endl;
+    }
+    else
+    {
+        cout << "Пустая строка." << endl;
+    }
 
     return 0;
 }
