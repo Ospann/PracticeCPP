@@ -29,7 +29,7 @@ int main()
 
     string input;
 
-    cout << "Введите ваш текст: ";
+    // cout << "Введите ваш текст: ";
     cin >> input;
 
     addStars(input, 0);
