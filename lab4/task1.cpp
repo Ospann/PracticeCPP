@@ -25,19 +25,15 @@ void addStars(string &s, int index)
 
 int main()
 {
+    // string input = "LItBeoFLcSGBOFQxMHoIuDDWcqcVgkcRoAeocXO";
+
     string input;
+
     cout << "Введите ваш текст: ";
     cin >> input;
 
-    if (!input.empty())
-    {
-        addStars(input, 0);
-        cout << input << endl;
-    }
-    else
-    {
-        cout << "Пустая строка." << endl;
-    }
+    addStars(input, 0);
+    cout << input << endl;
 
     return 0;
 }
