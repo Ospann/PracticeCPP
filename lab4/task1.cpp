@@ -11,7 +11,7 @@ using namespace std;
 void addStart(string &s, int index)
 {
     // Базовый случай: если индекс достиг конца строки, завершаем рекурсию.
-    if (index == s.length() - 1)
+    if (index == static_cast<int>(s.length()) - 1)
     {
         return;
     }
