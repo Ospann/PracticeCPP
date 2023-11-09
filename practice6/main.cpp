@@ -11,22 +11,16 @@ int main()
     const int numPeople = 5;
     Human *people[numPeople];
 
-    // Заполнение массива объектами обоих классов
-    people[0] = new Sportsman("Smith", "John", "Robert", 'M', 1998, "123 Main St", "Swimming", 3, 2);
-    people[1] = new Sportsman("Johnson", "Alice", "Marie", 'F', 1995, "456 Elm St", "Tennis", 2, 5);
-    // Добавьте другие объекты по необходимости...
+    people[0] = new Sportsman("Ospanov", "Arystan", "Ruslanovich", 'M', 2004, "Koktem 2", "Swimming", 3, 2);
+    people[1] = new Sportsman("Omarov", "Askhat", "Tleubekovich", 'M', 1995, "456 Elm St", "Tennis", 2, 5);
+    people[2] = new Student("Tleubekovich", "Arman", "Jeksenbekov", 'M', 2003, "Timiryzevo", 12345, "Computer Science", 3.3);
+    people[3] = new Student("Kim", "Nurzat", "Omarova", 'F', 2002, "Abay 67", 23342, "Medicine", 3.65);
+    people[4] = new Student("Ospanova", "Saule", "Kraulova", 'F', 1999, "Abay 22", 90099, "GameDev", 3.7);
 
-    // Вывод информации о людях из массива
     for (int i = 0; i < numPeople; ++i)
     {
         people[i]->displayInfo();
         cout << endl;
-    }
-
-    // Освобождение памяти
-    for (int i = 0; i < numPeople; ++i)
-    {
-        delete people[i];
     }
 
     return 0;

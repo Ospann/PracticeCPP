@@ -1,29 +1,30 @@
 #include <iostream>
-#include <cmath>
 #include <iomanip>
-
+#include <cmath>
 using namespace std;
 
-void calcualtion(int sum, int years, double percent)
+void calculation(int sum, int years, double percent, int downPayment)
 {
+    sum -= downPayment;
+
+    if (sum <= 0)
+    {
+        cout << "Сумма кредита после вычета первоначального взноса должна быть больше нуля." << endl;
+        return;
+    }
+
+    // Вычисление месяцного процента
     double monthlyInterestRate = (percent / 100) / 12;
-
-    // Общее количество месяцев
+    // все колво месяцев
     int totalMonths = years * 12;
+    int totalSum = sum * monthlyInterestRate;
 
-    // Ежемесячный платеж
-    /*
-     *
-     *
-     *
-     */
-    double monthlyPayment = (sum * monthlyInterestRate) / (1 - pow(1 + monthlyInterestRate, -totalMonths));
+    double monthlyPayment = totalSum / (1 - pow(1 + monthlyInterestRate, -totalMonths));
 
-    // Общая сумма выплат
     double totalPayment = monthlyPayment * totalMonths;
     double overpayment = totalPayment - sum;
 
-    cout << fixed; // Устанавливаем фиксированный формат вывода
+    cout << fixed;
     cout << setprecision(2);
     cout << "Ежемесячный платеж: " << monthlyPayment << " тенге" << endl;
     cout << "Общая сумма выплат: " << totalPayment << " тенге" << endl;
@@ -32,11 +33,14 @@ void calcualtion(int sum, int years, double percent)
 
 int main()
 {
-    int sum, years;
+    int sum, years, downPayment;
     double percent;
 
     cout << "Введите сумму стоимости квартиры: ";
     cin >> sum;
+
+    cout << "Введите первоначальный взнос: ";
+    cin >> downPayment;
 
     cout << "Введите на сколько лет планируете взять ипотеку: ";
     cin >> years;
@@ -44,7 +48,7 @@ int main()
     cout << "Введите процентную годовую ставку: ";
     cin >> percent;
 
-    calcualtion(sum, years, percent);
+    calculation(sum, years, percent, downPayment);
 
     return 0;
 }

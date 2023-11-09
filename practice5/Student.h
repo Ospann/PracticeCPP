@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
+#include "Human.h"
 using namespace std;
 
 class Student : public Human
 {
-
 private:
     int studentID;
     string major;
@@ -26,17 +26,6 @@ public:
         gpa = g;
     }
 
-    void displayInfo()
-    {
-        cout << "Student Information:" << endl;
-        cout << "Name: " << getLastName() << " " << getFirstName() << " " << getPatronymic() << endl;
-        cout << "Gender: " << getGender() << endl;
-        cout << "Birth Year: " << getBirthYear() << endl;
-        cout << "Address: " << getAddress() << endl;
-        cout << "student Id: " << studentID << endl;
-        cout << "Major: " << major << endl;
-        cout << "GPA: " << gpa << endl;
-    }
     ~Student()
     {
     }
@@ -74,6 +63,18 @@ public:
     void printStudentInfo()
     {
         cout << "Student ID: " << studentID << endl;
+        cout << "Major: " << major << endl;
+        cout << "GPA: " << gpa << endl;
+    }
+
+    void displayInfo()
+    {
+        cout << "Student Information:" << endl;
+        cout << "Name: " << getLastName() << " " << getFirstName() << " " << getPatronymic() << endl;
+        cout << "Gender: " << getGender() << endl;
+        cout << "Birth Year: " << getBirthYear() << endl;
+        cout << "Address: " << getAddress() << endl;
+        cout << "student Id: " << studentID << endl;
         cout << "Major: " << major << endl;
         cout << "GPA: " << gpa << endl;
     }

@@ -4,6 +4,10 @@ using namespace std;
 template <typename T, int Rows, int Cols>
 class Matrix
 {
+
+private:
+    T data[Rows][Cols];
+
 public:
     Matrix()
     {
@@ -31,16 +35,7 @@ public:
     {
         if (row < 0 || row >= Rows || col < 0 || col >= Cols)
         {
-            throw out_of_range("Matrix indices are out of range");
-        }
-        return data[row][col];
-    }
-
-    const T &operator()(int row, int col) const
-    {
-        if (row < 0 || row >= Rows || col < 0 || col >= Cols)
-        {
-            throw out_of_range("Matrix indices are out of range");
+            throw out_of_range("Матрица выходит за пределы");
         }
         return data[row][col];
     }
@@ -56,32 +51,25 @@ public:
             cout << endl;
         }
     }
-
-private:
-    T data[Rows][Cols];
 };
 
 int main()
 {
     try
     {
-        // Создаем матрицу 3x3 с элементами типа double
-        Matrix<double, 3, 3> matrix;
+        Matrix<double, 4, 4> matrix;
 
-        // Заполняем матрицу
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 4; j++)
             {
                 matrix(i, j) = (i + 1) * (j + 1);
             }
         }
 
-        // Выводим матрицу
         matrix.print();
 
-        // Попытка доступа к элементу за пределами матрицы
-        double value = matrix(5, 2); // Вызовет исключение
+        double value = matrix(5, 2);
     }
     catch (const out_of_range &e)
     {

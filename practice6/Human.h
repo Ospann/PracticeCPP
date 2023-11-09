@@ -4,9 +4,18 @@ using namespace std;
 
 class Human
 {
+
+private:
+    string lastName;
+    string firstName;
+    string patronymic;
+    char gender;
+    int birthYear;
+    string address;
+
 public:
-    virtual void displayInfo() = 0;
-    // Конструктор по умолчанию
+    virtual void displayInfo(){};
+
     Human()
     {
         lastName = "";
@@ -17,7 +26,6 @@ public:
         address = "";
     }
 
-    // Конструктор с параметрами
     Human(string last, string first, string pat, char gen, int year, string addr)
     {
         lastName = last;
@@ -28,13 +36,10 @@ public:
         address = addr;
     }
 
-    // Деструктор
-    ~Human()
+    virtual ~Human()
     {
-        // Пока не нужно освобождать какие-либо ресурсы
     }
 
-    // Методы для установки и получения значений полей
     void setLastName(string last)
     {
         lastName = last;
@@ -94,12 +99,4 @@ public:
     {
         return address;
     }
-
-private:
-    string lastName;
-    string firstName;
-    string patronymic;
-    char gender;
-    int birthYear;
-    string address;
 };
