@@ -45,3 +45,5 @@ int main()
 
     return 0;
 }
+
+// using ternary operator and Stack. Firstly, I made a loop by separate symbols, and if firs symbol in string is (,{,[, so i push it to bracketStack and continue loop, next I checking (), {}, [] placed close or not
