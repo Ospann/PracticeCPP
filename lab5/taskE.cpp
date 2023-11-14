@@ -1,37 +1,41 @@
 #include <iostream>
+#include <stack>
+
 using namespace std;
+
+void processLRString(int n, const string &lrString)
+{
+    stack<int> s;
+    int counter = 1;
+
+    for (int i = 0; i < n; ++i)
+    {
+        if (lrString[i] == 'L')
+        {
+            cout << counter++ << " ";
+        }
+        else if (lrString[i] == 'R')
+        {
+            s.push(counter++);
+        }
+    }
+
+    while (!s.empty())
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
+}
+
 int main()
 {
-    int N;
-    string S;
-    cin >> N >> S;
+    int n;
+    cin >> n;
 
-    const int MAX_N = 500000;
-    int left[MAX_N], right[MAX_N];
-    int leftSize = 0, rightSize = 0;
+    string lrString;
+    cin >> lrString;
 
-    right[rightSize++] = 0;
-
-    for (int i = 0; i < N; ++i)
-    {
-        if (S[i] == 'L')
-        {
-            left[leftSize++] = i + 1;
-        }
-        else if (S[i] == 'R')
-        {
-            right[rightSize++] = i + 1;
-        }
-    }
-
-    for (int i = 0; i < leftSize; ++i)
-    {
-        cout << left[i] << " ";
-    }
-    for (int i = 0; i < rightSize; ++i)
-    {
-        cout << right[i] << " ";
-    }
+    processLRString(n, lrString);
 
     return 0;
 }
