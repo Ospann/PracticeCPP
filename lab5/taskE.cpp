@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void processLRString(int n, const string &lrString)
+void insertion(int n, const string &lrString)
 {
     stack<int> s;
     int counter = 1;
@@ -35,7 +35,7 @@ int main()
     string lrString;
     cin >> lrString;
 
-    processLRString(n, lrString);
+    insertion(n, lrString);
 
     return 0;
 }
